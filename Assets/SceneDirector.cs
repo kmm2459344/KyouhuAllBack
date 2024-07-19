@@ -8,12 +8,20 @@ using UnityEngine.UI;
 
 public class SceneDirector : MonoBehaviour
 {
+    //“G
+    public GameObject prefabPaper;
+    public GameObject prefabDog;
+    public GameObject prefabBall;
+
     //BGM
     //public AudioSource BGM;
 
+    //ŽžŠÔ
     public Text txtTimer;
-
     float timer = 29;
+
+    //‘Ì—Í
+    public int HP = 100;
 
 
     // Start is called before the first frame update
@@ -29,14 +37,19 @@ public class SceneDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-        //ŽžŒv
+        //ŽžŠÔ‚ðŒ¸‚ç‚·
         timer -= Time.deltaTime;
         txtTimer.text = "" + (int)timer;
+
+        
+        if(HP < 0)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+
         if(timer < 0)
         {
-            Debug.Log("I‚í‚è");
+            SceneManager.LoadScene("Clear");
         }
     }
 
