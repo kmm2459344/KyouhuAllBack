@@ -5,22 +5,43 @@ using static UnityEditor.PlayerSettings;
 
 public class Player : MonoBehaviour
 {
+    private Animator anime = null;
+
     private Rigidbody2D myrigidbody;
+    private bool isGrounded = true;
 
     public float playerSpeed = 15;
-
+    public float jumpForce = 30f;
 
     // Start is called before the first frame update
     void Start()
     {
+        //アニメーションを取得
+        anime = GetComponent<Animator>();
+
         myrigidbody = this.GetComponent<Rigidbody2D>();
+        //Debug.Log("Start: Rigidbody2D initialized");
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         Vector2 force = Vector2.zero;
         Vector2 pos = transform.position;
+
+        //ジャンプ
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            Debug.Log("ジャンプ");
+            anime.SetBool("Jump", true);
+            myrigidbody.AddForce(transform.up * jumpForce);
+            isGrounded = true;
+        }
+        else
+        {
+            anime.SetBool("Jump", false);
+
+        }
 
         //左矢印キー
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -36,5 +57,25 @@ public class Player : MonoBehaviour
         }
 
         myrigidbody.MovePosition(myrigidbody.position + force * Time.fixedDeltaTime);
+    }
+
+    // 地面に接触したときの処理
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+            Debug.Log("地面イン");
+        }
+    }
+
+    // 地面から離れたときの処理
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+            Debug.Log("地面アウト");
+        }
     }
 }
