@@ -14,11 +14,6 @@ public class Paper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //int xPos = -10;
-        //float yPos = Random.Range(-2.0f, 4.0f);
-
-        //Vector2 position = new Vector2(xPos, yPos);
-        //Instantiate(PaperObj, position, Quaternion.identity);
 
         transform.Translate(0.008f, 0, 0);
 

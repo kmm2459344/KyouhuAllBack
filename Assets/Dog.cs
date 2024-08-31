@@ -1,34 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Dog : MonoBehaviour
 {
     GameObject PaperObj;
+    private bool isJump = false;
+    private float jumpTime;
+    private float jumpInterval;
+    private bool hasJumped = false;
+
     // Start is called before the first frame update
     void Start()
     {
         PaperObj = GameObject.Find("Dog");
+        jumpInterval = Random.Range(1f, 5f); // ランダムなジャンプタイミングを設定
+        jumpTime = Time.time + jumpInterval;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //int xPos = -10;
-        //float yPos = Random.Range(-2.0f, 4.0f);
-
-        //Vector2 position = new Vector2(xPos, yPos);
-        //Instantiate(PaperObj, position, Quaternion.identity);
-
-        //transform.Translate(0.008f, 0, 0);
-
-        //x軸が15以上になると消え
-
-        if (transform.position.x > 15.0f)
+        if (!hasJumped && Time.time >= jumpTime)
         {
-            Destroy(gameObject);
+            Jump();
+            hasJumped = true;
         }
+    }
 
+    void Jump()
+    {
+        if (!isJump)
+        {
+            isJump = true;
+            // ジャンプのロジック
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.AddForce(new Vector2(0, 700)); // 上方向に力を加える
+            }
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -37,10 +46,7 @@ public class Dog : MonoBehaviour
         {
             Destroy(gameObject);
             SceneDirector.HP -= 20;
-            //Debug.Log(SceneDirector.HP);
+            Debug.Log("犬触れた");
         }
-
     }
-
-
 }

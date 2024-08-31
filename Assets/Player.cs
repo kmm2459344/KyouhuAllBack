@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.tag = "Player";
         //アニメーションを取得
         anime = GetComponent<Animator>();
 
@@ -46,13 +47,13 @@ public class Player : MonoBehaviour
         //左矢印キー
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            Debug.Log("左");
+            //Debug.Log("左");
             force = new Vector2(playerSpeed * -1, 0);
         }
         //右矢印キー
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            Debug.Log("右");
+            //Debug.Log("右");
             force = new Vector2(playerSpeed, 0);
         }
 
