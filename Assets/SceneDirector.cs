@@ -30,6 +30,8 @@ public class SceneDirector : MonoBehaviour
 
     // 体力
     public static int HP = 100;
+    //HPバー用の変数
+    public Slider slider;
 
     private bool isPaperSpawning = false;
     private int paperCount = 0;
@@ -39,9 +41,10 @@ public class SceneDirector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        HP = 100;
         // BGM = GetComponent<AudioSource>();
         // BGM.Play();
+        HP = 100;
+        slider.value = 100;
     }
 
     // Update is called once per frame
@@ -84,10 +87,10 @@ public class SceneDirector : MonoBehaviour
             }
         }
 
-        txtTimer.text = "" + (int)timer;
+        //txtTimer.text = "" + (int)timer;
 
         // HP表示
-        txtHp.text = "" + (int)HP;
+        slider.value = (float)HP;
 
         if (HP <= 0)
         {
@@ -116,7 +119,7 @@ public class SceneDirector : MonoBehaviour
 
         // 1つ目の紙を生成
         paper1 = Instantiate(prefabPaper);
-        float py1 = Random.Range(-2.0f, 4.0f);
+        float py1 = Random.Range(1.0f, 5.0f);
         paper1.transform.position = new Vector2(-10, py1);
         paperCount++;
 
@@ -126,7 +129,7 @@ public class SceneDirector : MonoBehaviour
 
         // 2つ目の紙を生成
         paper2 = Instantiate(prefabPaper);
-        float py2 = Random.Range(-2.0f, 4.0f);
+        float py2 = Random.Range(1.0f, 5.0f);
         paper2.transform.position = new Vector2(-10, py2);
         paperCount++;
 

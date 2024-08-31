@@ -19,8 +19,9 @@ public class Player : MonoBehaviour
         gameObject.tag = "Player";
         //アニメーションを取得
         anime = GetComponent<Animator>();
-
         myrigidbody = this.GetComponent<Rigidbody2D>();
+        //初期位置
+        transform.position = new Vector2(9.04f, -3.44f);
         //Debug.Log("Start: Rigidbody2D initialized");
     }
 
@@ -58,6 +59,7 @@ public class Player : MonoBehaviour
         }
 
         myrigidbody.MovePosition(myrigidbody.position + force * Time.fixedDeltaTime);
+
     }
 
     // 地面に接触したときの処理
@@ -78,5 +80,17 @@ public class Player : MonoBehaviour
             isGrounded = false;
             Debug.Log("地面アウト");
         }
+    }
+
+    public void ButtonL ()
+    {
+        //Debug.Log("ボタン左");
+        transform.Translate(-1.5f, 0, 0);
+    }
+
+    public void ButtonR()
+    {
+        //Debug.Log("ボタン右");
+        transform.Translate(1.5f, 0, 0);
     }
 }
