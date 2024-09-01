@@ -379,8 +379,8 @@ Transform:
   m_GameObject: {fileID: 238501684}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.615, y: -7.174, z: 0}
-  m_LocalScale: {x: 31.826015, y: 0.5129295, z: 1}
+  m_LocalPosition: {x: -0.8658, y: -7.1453, z: 0}
+  m_LocalScale: {x: 35.323696, y: 0.45558396, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -670,7 +670,7 @@ Transform:
   m_GameObject: {fileID: 557068757}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.4, y: -3.44, z: 0}
+  m_LocalPosition: {x: 10.65, y: -3.47, z: 0}
   m_LocalScale: {x: 1.17705, y: 1.1298, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -703,7 +703,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -750,7 +750,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.28281462, y: -0.1826781}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -761,7 +761,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 6}
+  m_Size: {x: 2.1628711, y: 5.6346436}
   m_EdgeRadius: 0
 --- !u!114 &557068764
 MonoBehaviour:
@@ -855,6 +855,7 @@ GameObject:
   m_Component:
   - component: {fileID: 781472916}
   - component: {fileID: 781472917}
+  - component: {fileID: 781472918}
   m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
@@ -909,7 +910,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08665785, y: -0.37066114}
+  m_Offset: {x: 0.1719213, y: -0.37066114}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -920,8 +921,20 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6306327, y: 0.14034462}
+  m_Size: {x: 0.4601058, y: 0.14034462}
   m_EdgeRadius: 0
+--- !u!114 &781472918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781472915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69494117c0993104199feefa3eef2560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1125118612
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Paper : MonoBehaviour
 {
+    ObstacleMaster es;
+    private int Paper_Damage;
+
     GameObject PaperObj;
+
     // Start is called before the first frame update
     void Start()
     {
         PaperObj = GameObject.Find("Paper");
+        es = Resources.Load("ObstacleMaster") as ObstacleMaster;
+        Paper_Damage = es.sheets[0].list[0].Damage;
     }
 
     // Update is called once per frame
@@ -30,8 +37,8 @@ public class Paper : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
-            SceneDirector.HP -= 5;
-            //Debug.Log(SceneDirector.HP);
+            SceneDirector.HP -= Paper_Damage;
+            //Debug.Log(Paper_Damage);
         }
 
     }

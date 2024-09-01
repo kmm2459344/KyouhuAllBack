@@ -5,6 +5,9 @@ using System.Collections;
 
 public class SceneDirector : MonoBehaviour
 {
+    //マスター
+    CharacterMaster es;
+
     // 敵
     public GameObject prefabPaper;
     public GameObject prefabDog;
@@ -30,6 +33,7 @@ public class SceneDirector : MonoBehaviour
 
     // 体力
     public static int HP = 100;
+    public static int HP_Min = 0;
     //HPバー用の変数
     public Slider slider;
 
@@ -41,9 +45,13 @@ public class SceneDirector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        es = Resources.Load("CharacterMaster") as CharacterMaster;
+        HP = es.sheets[0].list[0].HpMax; //マスターからHPの最大値変更
+        HP_Min = es.sheets[0].list[0].HpMin; //マスターからHPの最小値変更
+
         // BGM = GetComponent<AudioSource>();
         // BGM.Play();
-        HP = 100;
+        //HP = 100;
         slider.value = 100;
     }
 
@@ -89,10 +97,10 @@ public class SceneDirector : MonoBehaviour
 
         //txtTimer.text = "" + (int)timer;
 
-        // HP表示
+        // HPバー表示
         slider.value = (float)HP;
 
-        if (HP <= 0)
+        if (HP <= HP_Min)
         {
             SceneManager.LoadScene("GameOver");
         }

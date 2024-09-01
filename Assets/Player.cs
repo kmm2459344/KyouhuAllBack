@@ -1,68 +1,64 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class Player : MonoBehaviour
 {
-    private Animator anime = null;
+    //マスター
+    CharacterMaster es;
+    private int DistanceX = 0; //左右の移動距離
+    private int DistanceY = 0; //ジャンプする高さ
+    private int JumpTime = 0; //ジャンプして着地するまでのフレーム数
 
+    private Animator anime = null;
     private Rigidbody2D myrigidbody;
     private bool isGrounded = true;
 
     public float playerSpeed = 15;
     public float jumpForce = 30f;
 
-    // Start is called before the first frame update
     void Start()
     {
+        es = Resources.Load("CharacterMaster") as CharacterMaster;
+        DistanceX = es.sheets[0].list[0].DistanceX; //マスターから左右の移動距離変更
+        DistanceY = es.sheets[0].list[0].DistanceY; //マスターからジャンプする高さ変更
+        JumpTime = es.sheets[0].list[0].JumpTime; //マスターからジャンプして着地するまでのフレーム数変更
+
         gameObject.tag = "Player";
-        //アニメーションを取得
         anime = GetComponent<Animator>();
-        myrigidbody = this.GetComponent<Rigidbody2D>();
-        //初期位置
+        myrigidbody = GetComponent<Rigidbody2D>();
         transform.position = new Vector2(9.04f, -3.44f);
-        //Debug.Log("Start: Rigidbody2D initialized");
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 force = Vector2.zero;
-        Vector2 pos = transform.position;
 
-        //ジャンプ
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            Debug.Log("ジャンプ");
-            anime.SetBool("Jump", true);
-            myrigidbody.AddForce(transform.up * jumpForce);
-            isGrounded = true;
-        }
-        else
-        {
-            anime.SetBool("Jump", false);
-
-        }
-
-        //左矢印キー
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            //Debug.Log("左");
             force = new Vector2(playerSpeed * -1, 0);
         }
-        //右矢印キー
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            //Debug.Log("右");
             force = new Vector2(playerSpeed, 0);
         }
 
         myrigidbody.MovePosition(myrigidbody.position + force * Time.fixedDeltaTime);
-
     }
 
-    // 地面に接触したときの処理
+    void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            Debug.Log("ジャンプ");
+            anime.SetBool("Jump", true);
+            myrigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            isGrounded = false; // ジャンプ後にisGroundedをfalseに設定
+        }
+        else
+        {
+            anime.SetBool("Jump", false);
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -72,7 +68,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    // 地面から離れたときの処理
     void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -82,7 +77,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ButtonL ()
+    public void ButtonL()
     {
         //Debug.Log("ボタン左");
         transform.Translate(-1.5f, 0, 0);

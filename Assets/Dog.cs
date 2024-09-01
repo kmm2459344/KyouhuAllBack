@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Dog : MonoBehaviour
 {
+    ObstacleMaster es;
+    private int Dog_Damage;
+
     GameObject PaperObj;
     private bool isJump = false;
     private float jumpTime;
@@ -11,6 +14,9 @@ public class Dog : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        es = Resources.Load("ObstacleMaster") as ObstacleMaster;
+        Dog_Damage = es.sheets[0].list[2].Damage;
+
         PaperObj = GameObject.Find("Dog");
         jumpInterval = Random.Range(1f, 5f); // ランダムなジャンプタイミングを設定
         jumpTime = Time.time + jumpInterval;
@@ -45,8 +51,8 @@ public class Dog : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
-            SceneDirector.HP -= 20;
-            Debug.Log("犬触れた");
+            SceneDirector.HP -= Dog_Damage;
+            //Debug.Log(Dog_Damage);
         }
     }
 }
