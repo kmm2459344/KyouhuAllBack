@@ -10,12 +10,20 @@ public class ClampSide : MonoBehaviour
     // x²•ûŒü‚ÌˆÚ“®”ÍˆÍ‚ÌÅ‘å’l
     [SerializeField] private float _maxX = 10.80f;
 
+    // y²•ûŒü‚ÌˆÚ“®”ÍˆÍ‚ÌÅ¬’l
+    [SerializeField] private float _minY = -6.9f;
+
+    // y²•ûŒü‚ÌˆÚ“®”ÍˆÍ‚ÌÅ‘å’l
+    [SerializeField] private float _maxY = 3.97f;
+
     private void Update()
     {
         var pos = transform.position;
 
         // x²•ûŒü‚ÌˆÚ“®”ÍˆÍ§ŒÀ
         pos.x = Mathf.Clamp(pos.x, _minX, _maxX);
+        // y²•ûŒü‚ÌˆÚ“®”ÍˆÍ§ŒÀ
+        pos.y = Mathf.Clamp(pos.y, _minY, _maxY);
 
         transform.position = pos;
     }

@@ -1,4 +1,7 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Player : MonoBehaviour
 {
@@ -13,7 +16,8 @@ public class Player : MonoBehaviour
     private bool isGrounded = true;
 
     public float playerSpeed = 15;
-    public float jumpForce = 30f;
+    public float jumpSpeed = 3;
+    public float jumpForce = 300.0f;
 
     void Start()
     {
@@ -28,29 +32,16 @@ public class Player : MonoBehaviour
         transform.position = new Vector2(9.04f, -3.44f);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector2 force = Vector2.zero;
 
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            force = new Vector2(playerSpeed * -1, 0);
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            force = new Vector2(playerSpeed, 0);
-        }
-
-        myrigidbody.MovePosition(myrigidbody.position + force * Time.fixedDeltaTime);
-    }
-
-    void FixedUpdate()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetMouseButtonDown(0) && isGrounded && !EventSystem.current.IsPointerOverGameObject())
         {
             Debug.Log("ジャンプ");
             anime.SetBool("Jump", true);
-            myrigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            force = new Vector2(0, jumpForce);
+            myrigidbody.AddForce(transform.up * jumpForce);
             isGrounded = false; // ジャンプ後にisGroundedをfalseに設定
         }
         else
@@ -77,15 +68,17 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ButtonL()
+    public void LButtonDown()
     {
-        //Debug.Log("ボタン左");
-        transform.Translate(-1.5f, 0, 0);
+        Vector2 PlayerPos = transform.position;
+        PlayerPos.x -= 2;
+        transform.position = PlayerPos;
     }
 
-    public void ButtonR()
+    public void RButtonDown()
     {
-        //Debug.Log("ボタン右");
-        transform.Translate(1.5f, 0, 0);
+        Vector2 PlayerPos = transform.position;
+        PlayerPos.x += 2;
+        transform.position = PlayerPos;
     }
 }
