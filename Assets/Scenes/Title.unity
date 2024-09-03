@@ -444,6 +444,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ef584aa8a857b499ca6195f8427daf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabPaper: {fileID: 0}
+  prefabDog: {fileID: 0}
+  dogSpeed: 3
+  prefabBall: {fileID: 0}
+  txtTimer: {fileID: 0}
+  txtHp: {fileID: 0}
+  slider: {fileID: 0}
 --- !u!61 &687678515
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -540,7 +547,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SCREEN TOUCH
+  m_Text: "       PLEASE \nSCREEN TOUCH"
 --- !u!222 &1527399133
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -565,8 +572,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 44, y: -139.28}
-  m_SizeDelta: {x: 654.5336, y: 86.5596}
+  m_AnchoredPosition: {x: 322, y: -143}
+  m_SizeDelta: {x: 1156.6152, y: 197.0539}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1602962674
 GameObject:
