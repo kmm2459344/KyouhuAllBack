@@ -207,7 +207,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 557068761}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: ButtonR
+        m_MethodName: RButtonDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -670,7 +670,7 @@ Transform:
   m_GameObject: {fileID: 557068757}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.65, y: -3.47, z: 0}
+  m_LocalPosition: {x: 9.08, y: -2.87, z: 0}
   m_LocalScale: {x: 1.17705, y: 1.1298, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -688,9 +688,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf6cd05ddcffae40baf9eaf7230476b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 15
-  jumpSpeed: 3
-  jumpForce: 3000
+  playerSpeed: 10
+  jumpSpeed: 500
+  jumpForce: 2150
 --- !u!50 &557068762
 Rigidbody2D:
   serializedVersion: 4
@@ -703,10 +703,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 15
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -777,6 +777,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minX: -11.65
   _maxX: 10.8
+  _minY: -6.9
+  _maxY: 7.43
 --- !u!1 &779934483
 GameObject:
   m_ObjectHideFlags: 0
@@ -1296,7 +1298,7 @@ GameObject:
   - component: {fileID: 1957162335}
   m_Layer: 0
   m_Name: Haikei
-  m_TagString: Untagged
+  m_TagString: Back
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1452,7 +1454,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 557068761}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: ButtonL
+        m_MethodName: LButtonDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

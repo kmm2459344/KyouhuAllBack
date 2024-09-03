@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Player : MonoBehaviour
@@ -35,36 +36,18 @@ public class Player : MonoBehaviour
     {
         Vector2 force = Vector2.zero;
 
-        //if (Input.GetKey(KeyCode.Space) && isGrounded)
-        //{
-        //    Debug.Log("ジャンプ");
-        //    anime.SetBool("Jump", true);
-        //    force = new Vector2(0, jumpForce);
-        //    myrigidbody.AddForce(transform.up * jumpForce);
-        //    //myrigidbody.velocity = new Vector2(myrigidbody.velocity.x, myrigidbody.velocity.y*jumpForce);
-
-        //    isGrounded = false; // ジャンプ後にisGroundedをfalseに設定
-        //}
-        //else
-        //{
-        //    anime.SetBool("Jump", false);
-        //}
-
-        if (Input.GetMouseButtonDown(0) &&  isGrounded)
+        if (Input.GetMouseButtonDown(0) && isGrounded && !EventSystem.current.IsPointerOverGameObject())
         {
             Debug.Log("ジャンプ");
             anime.SetBool("Jump", true);
             force = new Vector2(0, jumpForce);
             myrigidbody.AddForce(transform.up * jumpForce);
-            //myrigidbody.velocity = new Vector2(myrigidbody.velocity.x, myrigidbody.velocity.y*jumpForce);
-
             isGrounded = false; // ジャンプ後にisGroundedをfalseに設定
         }
         else
         {
             anime.SetBool("Jump", false);
         }
-
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -89,7 +72,6 @@ public class Player : MonoBehaviour
     {
         Vector2 PlayerPos = transform.position;
         PlayerPos.x -= 2;
-        //PlayerPos.x = -1;
         transform.position = PlayerPos;
     }
 
@@ -97,7 +79,6 @@ public class Player : MonoBehaviour
     {
         Vector2 PlayerPos = transform.position;
         PlayerPos.x += 2;
-        //PlayerPos.x = 1;
         transform.position = PlayerPos;
     }
 }
